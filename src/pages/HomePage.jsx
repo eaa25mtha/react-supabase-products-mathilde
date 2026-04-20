@@ -11,8 +11,8 @@ const starterProducts = [
 
 export default function HomePage() {
   // TODO (Trin 1): Gem env-værdier i variabler, fx:
-  // const URL = import.meta.env.VITE_SUPABASE_URL;
-  // const APIKEY = import.meta.env.VITE_SUPABASE_APIKEY;
+  const URL = import.meta.env.VITE_SUPABASE_URL;
+  const APIKEY = import.meta.env.VITE_SUPABASE_APIKEY;
   // TODO (Trin 2): Implementer GET i HomePage med useEffect/useState og fetch.
   const products = starterProducts;
 
