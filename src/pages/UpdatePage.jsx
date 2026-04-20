@@ -1,6 +1,11 @@
 import { useParams, useNavigate } from "react-router";
 import ProductForm from "../components/ProductForm";
 
+// env-værdier i variabler
+const URL = import.meta.env.VITE_SUPABASE_URL;
+const APIKEY = import.meta.env.VITE_SUPABASE_APIKEY;
+
+//skal den blive ved med at være der den her funktion?
 export default function UpdatePage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -12,8 +17,15 @@ export default function UpdatePage() {
   };
 
   async function handleSubmit(productData) {
-    console.log("UpdatePage productData:", productData);
-    // TODO (Trin 4): Implementer PATCH med fetch til `${URL}?id=eq.${id}`.
+    // implementering af PATCH
+    await fetch(`${URL}?id=eq.${id}`, {
+      method: "PATCH",
+      headers: {
+        apikey: APIKEY,
+        "content-Type": "application/json",
+      },
+      body: JSON.stringify(productData),
+    });
     navigate(`/products/${id}`);
   }
 
