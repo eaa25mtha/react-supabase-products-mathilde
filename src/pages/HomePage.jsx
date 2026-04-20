@@ -17,6 +17,7 @@ export default function HomePage() {
           "content-Type": "application/json",
         },
       });
+      //konvertering af data til json
       const data = await response.json();
       setProducts(data);
     }
