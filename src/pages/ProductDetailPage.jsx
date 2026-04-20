@@ -1,5 +1,9 @@
 import { useParams, useNavigate, Link } from "react-router";
 
+// env-værdier i variabler
+const URL = import.meta.env.VITE_SUPABASE_URL;
+const APIKEY = import.meta.env.VITE_SUPABASE_APIKEY;
+
 export default function ProductDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -12,18 +16,22 @@ export default function ProductDetailPage() {
 
   async function handleDelete() {
     const confirmed = window.confirm("Delete this product?");
-    if (confirmed) {
-      // TODO (Trin 5): Implementer DELETE med fetch til `${URL}?id=eq.${id}`.
-      navigate("/");
-    }
+    if (!confirmed) return;
+    //implementering af DELETE
+    await fetch(`${URL}?id=eq.${id}`, {
+      method: "DELETE",
+      headers: {
+        apikey: APIKEY,
+        "content-Type": "application/json",
+      },
+    });
+
+    navigate("/");
   }
 
   return (
     <main className="app">
       <h1 className="page-title">Product Details</h1>
-      <p className="status-msg">
-        TODO (Trin 5): Implementer GET af product details med fetch.
-      </p>
 
       <article className="product-detail">
         {product.image ? (
